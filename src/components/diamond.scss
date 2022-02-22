@@ -1,34 +1,50 @@
-.diamond {
+@mixin diamond($size) {
   width: 0;
   height: 0;
-  border: 1.2rem solid transparent;
+  border: $size solid transparent;
   border-bottom-color: #505f68;
   position: relative;
-  top: -1.2rem;
+  top: -$size;
 }
-.diamond:after {
+@mixin diamond-after($size) {
   content: "";
   position: absolute;
-  left: -1.2rem;
-  top: 1.2rem;
+  left: -$size;
+  top: $size;
   width: 0;
   height: 0;
-  border: 1.2rem solid transparent;
+  border: $size solid transparent;
   border-top-color: #505f68;
 }
 
-.success.diamond{
+.diamond {
+  @include diamond(1.2rem);
+}
+
+.diamond:after {
+  @include diamond-after(1.2rem);
+}
+
+.small-diamond {
+  @include diamond(0.9rem);
+}
+
+.small-diamond:after {
+  @include diamond-after(0.9rem);
+}
+
+.success {
   border-bottom-color: #1ceff9;
 }
 
-.success.diamond:after{
+.success:after {
   border-top-color: #1ceff9;
 }
 
-.fail.diamond{
+.fail {
   border-bottom-color: #d66765;
 }
 
-.fail.diamond:after{
+.fail:after {
   border-top-color: #d66765;
 }
