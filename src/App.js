@@ -89,11 +89,11 @@ function App() {
           data={facetList1}
           size={size}
           onSuccess={() => {
-            setChance(chance - 10);
+            setChance(Math.max(25, chance - 10));
             setFacetList1([...facetList1, true]);
           }}
           onFail={() => {
-            setChance(chance + 10);
+            setChance(Math.min(75, chance + 10));
             setFacetList1([...facetList1, false]);
           }}
           percent={percent1}
@@ -102,11 +102,11 @@ function App() {
           data={facetList2}
           size={size}
           onSuccess={() => {
-            setChance(chance - 10);
+            setChance(Math.max(25, chance - 10));
             setFacetList2([...facetList2, true]);
           }}
           onFail={() => {
-            setChance(chance + 10);
+            setChance(Math.min(75, chance + 10));
             setFacetList2([...facetList2, false]);
           }}
           percent={percent2}
@@ -115,11 +115,11 @@ function App() {
           data={facetList3}
           size={size}
           onSuccess={() => {
-            setChance(chance - 10);
+            setChance(Math.max(25, chance - 10));
             setFacetList3([...facetList3, true]);
           }}
           onFail={() => {
-            setChance(chance + 10);
+            setChance(Math.min(75, chance + 10));
             setFacetList3([...facetList3, false]);
           }}
           percent={percent3}
