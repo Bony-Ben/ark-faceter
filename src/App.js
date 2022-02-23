@@ -3,6 +3,8 @@ import NumericFormField from "./components/NumericFormField";
 import Brain from "./Brain.js";
 import { useState, useEffect } from "react";
 
+const history = [];
+
 function App() {
   const [size, setSize] = useState(6);
   const [min1, setMin1] = useState(0);
@@ -18,6 +20,17 @@ function App() {
   const [percent2, setPercent2] = useState(0);
   const [percent3, setPercent3] = useState(0);
 
+  const undo = () => {
+    const item = history.pop();
+    if (item === 1) {
+      setFacetList1(facetList1.slice(0, facetList1.length - 1));
+    } else if (item === 2) {
+      setFacetList2(facetList2.slice(0, facetList2.length - 1));
+    } else {
+      setFacetList3(facetList3.slice(0, facetList3.length - 1));
+    }
+  };
+
   const getListData = (list) => {
     const success = list.filter((f) => f).length;
     return { success, fail: list.length - success };
@@ -27,7 +40,7 @@ function App() {
     setFacetList1([]);
     setFacetList2([]);
     setFacetList3([]);
-  }
+  };
 
   useEffect(() => {
     const brain = new Brain(size, min1, min2, max);
@@ -95,10 +108,12 @@ function App() {
           onSuccess={() => {
             setChance(Math.max(25, chance - 10));
             setFacetList1([...facetList1, true]);
+            history.push(1);
           }}
           onFail={() => {
             setChance(Math.min(75, chance + 10));
             setFacetList1([...facetList1, false]);
+            history.push(1);
           }}
           percent={percent1}
         />
@@ -108,10 +123,12 @@ function App() {
           onSuccess={() => {
             setChance(Math.max(25, chance - 10));
             setFacetList2([...facetList2, true]);
+            history.push(2);
           }}
           onFail={() => {
             setChance(Math.min(75, chance + 10));
             setFacetList2([...facetList2, false]);
+            history.push(2);
           }}
           percent={percent2}
         />
@@ -121,20 +138,28 @@ function App() {
           onSuccess={() => {
             setChance(Math.max(25, chance - 10));
             setFacetList3([...facetList3, true]);
+            history.push(3);
           }}
           onFail={() => {
             setChance(Math.min(75, chance + 10));
             setFacetList3([...facetList3, false]);
+            history.push(3);
           }}
           percent={percent3}
         />
       </div>
-      <div>
+      <div className="flex gap-4">
         <button
           className="bg-slate-300 hover:bg-white text-black rounded p-1"
           onClick={resetLists}
         >
           Reset
+        </button>
+        <button
+          className="bg-slate-300 hover:bg-white text-black rounded p-1"
+          onClick={undo}
+        >
+          Undo
         </button>
       </div>
     </div>
