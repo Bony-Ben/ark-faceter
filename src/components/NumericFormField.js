@@ -8,21 +8,23 @@ function NumericFormField(props) {
     );
   };
   return (
-    <label>
-      {props.name}:
-      <input
-        className="rounded text-black px-1 ml-2 w-16"
-        type="number"
-        value={props.value}
-        onChange={onChange}
-      ></input>
-    </label>
+    <div>
+      <label>
+        {props.name}:
+        <input
+          className="rounded text-black px-1 ml-2 w-16"
+          type="number"
+          value={props.value}
+          onChange={onChange}
+        ></input>
+      </label>
+    </div>
   );
 }
 
-NumericFormField.defaultProps ={
+NumericFormField.defaultProps = {
   minValue: 0,
-  maxValue: Infinity
-}
+  maxValue: Infinity,
+};
 
 export default NumericFormField;
