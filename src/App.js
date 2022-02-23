@@ -23,6 +23,12 @@ function App() {
     return { success, fail: list.length - success };
   };
 
+  const resetLists = () => {
+    setFacetList1([]);
+    setFacetList2([]);
+    setFacetList3([]);
+  }
+
   useEffect(() => {
     const brain = new Brain(size, min1, min2, max);
     const listData1 = getListData(facetList1);
@@ -52,10 +58,8 @@ function App() {
           maxValue={10}
           value={size}
           onChange={(value) => {
+            resetLists();
             setSize(value);
-            setFacetList1([]);
-            setFacetList2([]);
-            setFacetList3([]);
           }}
         />
         <NumericFormField
@@ -84,7 +88,7 @@ function App() {
           onChange={(value) => setChance(value)}
         />
       </form>
-      <div className="flex flex-col gap-4 mt-4">
+      <div className="flex flex-col gap-4 my-4">
         <FacetTile
           data={facetList1}
           size={size}
@@ -124,6 +128,14 @@ function App() {
           }}
           percent={percent3}
         />
+      </div>
+      <div>
+        <button
+          className="bg-slate-300 hover:bg-white text-black rounded p-1"
+          onClick={resetLists}
+        >
+          Reset
+        </button>
       </div>
     </div>
   );
