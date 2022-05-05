@@ -59,7 +59,7 @@ function App() {
     setPercent1((results.a * 100).toFixed(3));
     setPercent2((results.b * 100).toFixed(3));
     setPercent3((results.c * 100).toFixed(3));
-  });
+  }, [size, min1, min2, max, chance, facetList1, facetList2, facetList3]);
 
   return (
     <div className="bg-slate-800 min-h-screen text-white p-4">
