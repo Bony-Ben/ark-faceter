@@ -33,7 +33,7 @@ function FacetButton(props) {
           className="bg-slate-300 hover:bg-white text-black rounded p-1"
           onClick={() => setFaceting(true)}
         >
-          <img className="inline" width="15" height="15" src="hammer.ico" />{" "}
+          <img className="inline" width="15" height="15" src="hammer.ico" alt="build" />{" "}
           %{props.percent}
         </button>
       </div>
